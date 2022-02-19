@@ -1,0 +1,20 @@
+version: '3.2'
+services:
+  nginx:
+    image: ranadeeppolavarapu/nginx-http3
+    container_name: site
+    restart: always
+    ports:
+      - 80:80
+      - 443:443
+      - 443:443/udp # 开放 443 udp端口
+    volumes:
+      - ./conf.d:/etc/nginx/conf.d/
+      - ./log:/var/log/nginx
+      - ./html:/usr/share/nginx/html
+      - ./cert:/etc/ssl/
+      - ./nginx.conf:/etc/nginx/nginx.conf 
+      - /etc/localtime:/etc/localtime
+
+      # cert/private/site.key
+      # cert/site.crt
